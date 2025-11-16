@@ -74,7 +74,13 @@ export default function App() {
 
         <div>
           <h2>Pubblico:</h2>
-          <input type="text" name='public' checked={dataForm.public} onChange={handleChange} />
+          <input
+            type="checkbox"
+            name="public"
+            checked={dataForm.public}
+            onChange={handleChange}
+          />
+
         </div>
 
         <button type='submit'>Invia Form all'Endpoint</button>
