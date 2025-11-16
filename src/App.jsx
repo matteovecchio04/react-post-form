@@ -27,15 +27,36 @@ export default function App() {
       ...dataForm, // dataForm copies the previous state
       [name]: newValue // [name]: newValue only edits the field that's been edited
     })
-
-
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post(endpoint, dataForm)
+      .then((resp) => {
+        console.log(resp.data);
+
+        setDataForm({
+          author: "",
+          title: "",
+          body: "",
+          public: false
+        });
+
+        alert("Form inviato correttamente!");
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Errore nell'inviare il Form");
+      });
+  };
+
 
   return (
     <>
       <h1>Invia Form all'Endpoint</h1>
 
-      <form onSubmit={ }>
+      <form onSubmit={handleSubmit}>
         <div>
           <h2>Autore:</h2>
           <input type="text" name='author' value={dataForm.author} onChange={handleChange} />
